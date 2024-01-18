@@ -1,81 +1,16 @@
-class DDOS:
-    def __init__(self, panelURL, machineID):
-        self.panelURL = panelURL
-        self.C = HTTPSocket(str(self.panelURL), str(machineID))   # Initiate HTTPSocket Class
+import socket
+import time
 
-    def TCP_attack(self, target_host, thread_number, max_timeout_number):
-        try:
-            print("[*] Started TCP Attack")
-            self.C.Log("Succ", "Started TCP Attack")
-            self.C.Send("CleanCommands")            
-        except Exception as e:
-            print("[Error In DDOS, TCP_attack() Function]")
-            print(f"[Error] : {e}")
-            self.C.Send("CleanCommands")               
-            self.C.Log("Fail", "An unexpected error occurred : " + str(e))  
+def main():
+    host = '127.0.0.1'
+    port = 5000
+    message = b'Hello Server'
 
-    def UDP_attack(self, target_host, thread_number, max_timeout_number):
-        try:
-            print("[*] Started UDP Attack")
-            self.C.Log("Succ", "Started UDP Attack")
-            self.C.Send("CleanCommands")            
-        except Exception as e:
-            print("[Error In DDOS, UDP_attack() Function]")
-            print(f"[Error] : {e}")
-            self.C.Send("CleanCommands")
-            self.C.Log("Fail", "An unexpected error occurred : " + str(e)) 
-            
-    def Slowloris_attack(self, target_host, thread_number, max_timeout_number):
-        try:
-            print("[*] Started Slowloris Attack")
-            self.C.Log("Succ", "Started Slowloris Attack")
-            self.C.Send("CleanCommands")            
-        except Exception as e:
-            print("[Error In DDOS, Slowloris_attack() Function]")
-            print(f"[Error] : {e}")
-            self.C.Send("CleanCommands")
-            self.C.Log("Fail", "An unexpected error occurred : " + str(e))  
-            
-    def ARME_attack(self, target_host, thread_number, max_timeout_number):
-        try:
-            print("[*] Started ARME Attack")
-            self.C.Log("Succ", "Started ARME Attack")
-            self.C.Send("CleanCommands")            
-        except Exception as e:
-            print("[Error In DDOS, ARME_attack() Function]")
-            print(f"[Error] : {e}")
-            self.C.Send("CleanCommands")
-            self.C.Log("Fail", "An unexpected error occurred : " + str(e))  
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-    def PostHTTP_attack(self, target_host, thread_number, max_timeout_number):
-        try:
-            print("[*] Started PostHTTP Attack")
-            self.C.Log("Succ", "Started PostHTTP Attack")
-            self.C.Send("CleanCommands")            
-        except Exception as e:
-            print("[Error In DDOS, PostHTTP_attack() Function]")
-            print(f"[Error] : {e}")
-            self.C.Send("CleanCommands")
-            self.C.Log("Fail", "An unexpected error occurred : " + str(e)) 
-            
-    def HTTPGet_attack(self, target_host, thread_number, max_timeout_number):
-        try:
-            print("[*] Started HTTPGet Attack")
-            self.C.Log("Succ", "Started HTTPGet Attack")
-            self.C.Send("CleanCommands")            
-        except Exception as e:
-            print("[Error In DDOS, HTTPGet_attack() Function]")
-            print(f"[Error] : {e}")
-            self.C.Send("CleanCommands")
-            self.C.Log("Fail", "An unexpected error occurred : " + str(e))     
+    for _ in range(1000):
+        client_socket.sendto(message, (host, port))
+        time.sleep(0.01)
 
-    def BandwidthFlood_attack(self, target_host, thread_number, max_timeout_number):
-        try:
-            print("[*] Started BandwidthFlood Attack")
-            self.C.Log("Succ", "Started BandwidthFlood Attack")
-            self.C.Send("CleanCommands")            
-        except Exception as e:
-            print("[Error In DDOS, BandwidthFlood_attack() Function]")
-            print(f"[Error] : {e}")
-            self.C.Send("CleanCommands")
-            self.C.Log("Fail", "An unexpected error occurred : " + str(e))            
+if __name__ == '__main__':
+    main()
